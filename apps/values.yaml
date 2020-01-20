@@ -18,7 +18,7 @@ applications:
   - name: tekton-dashboard
 
     # (optional) If not specified then "name" is used
-    namespace: tekton-dashboard
+    namespace: tekton-pipelines
 
     # (optional) If not specified then "name" is used
     path: tekton-dashboard

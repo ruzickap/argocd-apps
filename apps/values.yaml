@@ -11,7 +11,8 @@ global:
     repoURL: https://github.com/ruzickap/argocd-apps
 
     # (optional) If not specified then "HEAD" is used
-    targetRevision: HEAD
+    #targetRevision: HEAD
+    targetRevision: dev
 
 applications:
   - name: tekton-pipelines

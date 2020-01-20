@@ -1,0 +1,16 @@
+apiVersion: v1
+name: applications
+version: v0.1.0
+appVersion: v0.1.0
+description: Applications
+home: https://github.com/ruzickap/argocd-apps
+icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+keywords:
+  - argocd
+  - apps
+  - applications
+sources:
+  - https://github.com/ruzickap/argocd-apps
+maintainers:
+  - name: ruzickap
+    email: petr.ruzicka@gmail.com

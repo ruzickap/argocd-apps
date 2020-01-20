@@ -1,0 +1,10 @@
+{{- range .Values.applications }}
+---
+# Application: {{ .name }}
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .namespace | default .name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+{{- end }}

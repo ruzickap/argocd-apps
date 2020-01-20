@@ -1,0 +1,20 @@
+{{- range .Values.applications }}
+---
+# Application: {{ .name }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: {{ .namespace | default .name }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .namespace | default .name }}
+    server: {{ .server | default $.Values.global.destination.server | default "https://kubernetes.default.svc" }}
+  project: {{ .project | default $.Values.global.destination.project | default "default" }}
+  source:
+    path: {{ .path | default .name }}
+    repoURL: {{ .repoURL | default $.Values.global.source.repoURL }}
+    targetRevision: {{ .targetRevision | default $.Values.global.source.targetRevision | default "HEAD"}}
+{{- end }}

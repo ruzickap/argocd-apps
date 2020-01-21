@@ -10,8 +10,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    #namespace: {{ .namespace | default .name }}
-    namespace: '*'
+    namespace: {{ .namespace | default .name }}
     server: {{ .server | default $.Values.global.destination.server | default "https://kubernetes.default.svc" }}
   syncPolicy:
     automated:

@@ -12,6 +12,9 @@ spec:
   destination:
     namespace: {{ .namespace | default .name }}
     server: {{ .server | default $.Values.global.destination.server | default "https://kubernetes.default.svc" }}
+  syncPolicy:
+    automated:
+      prune: true
   project: {{ .project | default $.Values.global.destination.project | default "default" }}
   source:
     path: {{ .path | default .name }}

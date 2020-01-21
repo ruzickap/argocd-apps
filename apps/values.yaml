@@ -16,3 +16,4 @@ global:
 
 applications:
   - name: tekton-pipelines
+    namespace: argocd

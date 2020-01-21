@@ -11,8 +11,26 @@ global:
     repoURL: https://github.com/ruzickap/argocd-apps
 
     # (optional) If not specified then "HEAD" is used
-    #targetRevision: HEAD
-    targetRevision: dev
+    targetRevision: HEAD
 
 applications:
+  # Application name
   - name: tekton-pipelines
+
+    # (optional) If not specified then "name" is used
+    namespace: tekton-pipelines
+
+    # (optional) If not specified then "name" is used
+    path: tekton-pipelines
+
+    # (optional) If not specified then "global" project is used
+    project: default
+
+    # (optional) If not specified then "global" repoURL is used
+    repoURL: https://github.com/ruzickap/argocd-apps
+
+    # (optional) If not specified then "global" server is used
+    server: https://kubernetes.default.svc
+
+    # (optional) If not specified then "global" targetRevision is used
+    targetRevision: HEAD

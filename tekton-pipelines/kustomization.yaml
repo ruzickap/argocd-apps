@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: tekton-pipelines
 
 resources:
-  - namespace.yml
-  - guestbook-ui-deployment.yaml
-  - guestbook-ui-svc.yaml
+  - tekton-release.yaml
+#  - namespace.yml
+#  - guestbook-ui-deployment.yaml
+#  - guestbook-ui-svc.yaml

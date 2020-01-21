@@ -5,13 +5,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ .name }}
-  namespace: {{ .namespace | default .name }}
+  namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: {{ .namespace | default .name }}
     server: {{ .server | default $.Values.global.destination.server | default "https://kubernetes.default.svc" }}
+  syncPolicy:
+    automated:
+      prune: true
   project: {{ .project | default $.Values.global.destination.project | default "default" }}
   source:
     path: {{ .path | default .name }}

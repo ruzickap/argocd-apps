@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tekton-dashboard
+  namespace: tekton-pipelines
+spec:
+  tls:
+    - hosts:
+        - tekton-dashboard.magmaci.magma.mirantis.tech
+      secretName: ingress-certificate
+  rules:
+    - host: tekton-dashboard.magmaci.magma.mirantis.tech
+      http:
+        paths:
+          - backend:
+              serviceName: tekton-dashboard
+              servicePort: 9097

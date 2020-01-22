@@ -5,3 +5,4 @@ namespace: tekton-pipelines
 resources:
   # Tekton Dashboard v0.4.1
   - tekton-dashboard.yaml
+  - tekton-dashboard-https-ingress.yaml

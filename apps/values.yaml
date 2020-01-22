@@ -34,3 +34,5 @@ applications:
 
     # (optional) If not specified then "global" targetRevision is used
     targetRevision: HEAD
+
+  - name: tekton-dashboard

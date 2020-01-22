@@ -36,3 +36,4 @@ applications:
     targetRevision: HEAD
 
   - name: tekton-dashboard
+    namespace: tekton-pipelines

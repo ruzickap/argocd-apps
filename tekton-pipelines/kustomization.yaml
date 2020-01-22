@@ -13,4 +13,8 @@ patchesJson6902:
     version: v1
     kind: Namespace
     name: tekton-pipelines
-  path: label_namespace_tekton-pipelines_patch.yaml
+  patch: |-
+    - op: add
+      path: /metadata/labels
+      value:
+        app: kubed

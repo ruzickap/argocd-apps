@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: tekton-pipelines
 
 resources:
-  # Tekton Pipelines v0.9.2
+  # Tekton Pipelines: https://github.com/tektoncd/pipeline/releases/download/v0.10.0/release.yaml
   - tekton-pipelines.yaml
 
 # Add label app=kubed to namespace

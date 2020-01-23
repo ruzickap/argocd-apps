@@ -6,10 +6,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - tekton-dashboard.magmaci.magma.mirantis.tech
+        - {{ $.Values.host }}
       secretName: ingress-certificate
   rules:
-    - host: tekton-dashboard.magmaci.magma.mirantis.tech
+    - host: {{ $.Values.host }}
       http:
         paths:
           - backend:

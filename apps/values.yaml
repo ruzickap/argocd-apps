@@ -16,8 +16,7 @@ global:
 
 applications:
   # Application name
-  - name: tekton-pipelines
-
+  tekton-pipelines:
     # (optional) If not specified then "name" is used
     namespace: tekton-pipelines
 
@@ -37,11 +36,11 @@ applications:
     #targetRevision: HEAD
     targetRevision: dev
 
-  - name: tekton-dashboard
+  tekton-dashboard:
     namespace: tekton-pipelines
     application_source_specific_configs:
       helm:
         values: |
           host: tekton-dashboard.example.com
 
-  # - name: prow
+  # prow

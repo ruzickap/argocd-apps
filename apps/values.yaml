@@ -16,31 +16,31 @@ global:
 
 applications:
   # Application name
-  tekton-pipelines:
-    # (optional) If not specified then "name" is used
-    namespace: tekton-pipelines
+  # tekton-pipelines:
+  #   # (optional) If not specified then "name" is used
+  #   namespace: tekton-pipelines
 
-    # (optional) If not specified then "name" is used
-    path: tekton-pipelines
+  #   # (optional) If not specified then "name" is used
+  #   path: tekton-pipelines
 
-    # (optional) If not specified then "global" project is used
-    project: default
+  #   # (optional) If not specified then "global" project is used
+  #   project: default
 
-    # (optional) If not specified then "global" repoURL is used
-    repoURL: https://github.com/ruzickap/argocd-apps
+  #   # (optional) If not specified then "global" repoURL is used
+  #   repoURL: https://github.com/ruzickap/argocd-apps
 
-    # (optional) If not specified then "global" server is used
-    server: https://kubernetes.default.svc
+  #   # (optional) If not specified then "global" server is used
+  #   server: https://kubernetes.default.svc
 
-    # (optional) If not specified then "global" targetRevision is used
-    #targetRevision: HEAD
-    targetRevision: dev
+  #   # (optional) If not specified then "global" targetRevision is used
+  #   #targetRevision: HEAD
+  #   targetRevision: dev
 
   tekton-dashboard:
-    namespace: tekton-pipelines-old
+    namespace: tekton-pipelines-ttttttttttt
     application_source_specific_configs:
       helm:
-        values: |
-          host: tekton-dashboard.example.com
+        values:
+          host: tekton-dashboard.exampleaaaaaaaa.com
 
   # prow

@@ -1,1 +1,1 @@
-host: tekton-dashboard.example.com
+host: tekton-dashboard.helm-tekton-dashboard-host-value.com

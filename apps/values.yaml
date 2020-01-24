@@ -37,10 +37,10 @@ applications:
   #   targetRevision: dev
 
   tekton-dashboard:
-    namespace: tekton-pipelines-ttttttttttt
+    namespace: tekton-pipelines
     application_source_specific_configs:
       helm:
         values:
-          host: tekton-dashboard.exampleaaaaaaaa.com
+          host: tekton-dashboard.helm-apps-value.com
 
   # prow

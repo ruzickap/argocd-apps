@@ -40,7 +40,11 @@ applications:
     namespace: tekton-pipelines
     application_source_specific_configs:
       helm:
-        values:
-          host: "tekton-dashboard.helm-apps-value.com"
+        # Due to this bug (https://github.com/argoproj/argo-cd/issues/3032) I need to use `parameters` instead of `values: |`
+        # values: |
+        #   host: tekton-dashboard.helm-apps-value.com
+        parameters:
+          - name: host
+            value: mydomain.example.com
 
   # prow

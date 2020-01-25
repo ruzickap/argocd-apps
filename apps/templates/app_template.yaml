@@ -1,6 +1,6 @@
 {{- range $key, $application := .Values.applications }}
 ---
-# Application: {{ .name }}
+# Application: {{ $key }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -15,7 +15,7 @@ spec:
     repoURL: {{ $application.repoURL | default $.Values.global.source.repoURL }}
     targetRevision: {{ $application.targetRevision | default $.Values.global.source.targetRevision | default "HEAD"}}
     {{- if $application.application_source_specific_configs }}
-{{ toYaml $application.application_source_specific_configs | indent 2 }}
+{{ toYaml $application.application_source_specific_configs | indent 4 }}
     {{- end }}
   destination:
     namespace: {{ $application.namespace | default $key }}

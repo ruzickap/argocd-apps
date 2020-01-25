@@ -1,0 +1,16 @@
+# see https://github.com/argoproj/argocd-example-apps/tree/master/plugins/kustomized-helm
+resources:
+  - ./all.yaml
+
+# Add label app=kubed to namespace
+# It's needed for kind to copy the certificate [ingress-certificate] secret form cert-manager namespace)
+patchesJson6902:
+- target:
+    version: v1
+    kind: Namespace
+    name: tekton-pipelines
+  patch: |-
+    - op: add
+      path: /metadata/labels
+      value:
+        app: kubed

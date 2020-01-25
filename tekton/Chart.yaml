@@ -1,17 +1,19 @@
 apiVersion: v1
-name: applications-tekton-dashboard
+name: applications-tekton
 version: v0.1.0
 appVersion: v0.1.0
-description: Applications - tekton-dashboard
-home: https://github.com/ruzickap/argocd-apps/tekton-dashboard
+description: Applications - tekton
+home: https://github.com/ruzickap/argocd-apps/tekton
 icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
 keywords:
   - argocd
   - apps
   - applications
+  - tekton
+  - tekton-pipelines
   - tekton-dashboard
 sources:
-  - https://github.com/ruzickap/argocd-apps/tekton-dashboard
+  - https://github.com/ruzickap/argocd-apps/tekton
 maintainers:
   - name: ruzickap
     email: petr.ruzicka@gmail.com

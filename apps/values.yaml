@@ -41,6 +41,6 @@ applications:
     application_source_specific_configs:
       helm:
         values:
-          host: tekton-dashboard.helm-apps-value.com
+          host: "tekton-dashboard.helm-apps-value.com"
 
   # prow

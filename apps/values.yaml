@@ -16,7 +16,7 @@ global:
 
 applications:
   # Application name
-  tekton-pipelines:
+  tekton:
     # (optional) If not specified then "name" is used
     namespace: tekton-pipelines
 
@@ -36,8 +36,7 @@ applications:
     #targetRevision: HEAD
     targetRevision: dev
 
-  tekton-dashboard:
-    namespace: tekton-pipelines
+    # Helm configuration
     application_source_specific_configs:
       helm:
         # Due to this bug (https://github.com/argoproj/argo-cd/issues/3032) I need to use `parameters` instead of `values: |`

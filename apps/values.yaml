@@ -15,13 +15,12 @@ global:
 
 applications:
   # Application name
-  - name: tekton-pipelines
-
+  tekton:
     # (optional) If not specified then "name" is used
     namespace: tekton-pipelines
 
     # (optional) If not specified then "name" is used
-    path: tekton-pipelines
+    path: tekton
 
     # (optional) If not specified then "global" project is used
     project: default
@@ -35,5 +34,12 @@ applications:
     # (optional) If not specified then "global" targetRevision is used
     targetRevision: HEAD
 
-  - name: tekton-dashboard
-    namespace: tekton-pipelines
+    # Helm configuration
+    application_source_specific_configs:
+      helm:
+        # Due to this bug (https://github.com/argoproj/argo-cd/issues/3032) I need to use `parameters` instead of `values: |`
+        # values: |
+        #   host: tekton-dashboard.helm-apps-value.com
+        parameters:
+          - name: host
+            value: mydomain.example.com

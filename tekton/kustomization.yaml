@@ -1,10 +1,6 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namespace: tekton-pipelines
-
+# see https://github.com/argoproj/argocd-example-apps/tree/master/plugins/kustomized-helm
 resources:
-  # Tekton Pipelines: https://github.com/tektoncd/pipeline/releases/download/v0.10.0/release.yaml
-  - tekton-pipelines.yaml
+  - ./all.yaml
 
 # Add label app=kubed to namespace
 # It's needed for kind to copy the certificate [ingress-certificate] secret form cert-manager namespace)

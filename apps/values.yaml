@@ -21,7 +21,7 @@ applications:
     namespace: tekton-pipelines
 
     # (optional) If not specified then "name" is used
-    path: tekton-pipelines
+    path: tekton
 
     # (optional) If not specified then "global" project is used
     project: default

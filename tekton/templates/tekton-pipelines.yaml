@@ -17,6 +17,7 @@ metadata:
   name: tekton-pipelines
   labels:
     app: kubed
+
 ---
 # Copyright 2019 The Tekton Authors
 #

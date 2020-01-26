@@ -7,7 +7,7 @@ spec:
   tls:
     - hosts:
         - {{ $.Values.host }}
-      secretName: ingress-certificate
+      secretName: {{ $.Values.ingressCertificate }}
   rules:
     - host: {{ $.Values.host }}
       http:

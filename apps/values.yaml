@@ -37,12 +37,6 @@ applications:
     # Helm configuration
     application_source_specific_configs:
       helm:
-        # Due to this bug (https://github.com/argoproj/argo-cd/issues/3032) I need to use `parameters` instead of `values: |`
-        # values: |
-        #   host: tekton-dashboard.myexample.dev
-        #   ingressCertificate: my-ingress-certificate
-        parameters:
-          - name: host
-            value: tekton-dashboard.myexample.dev
-          - name: ingressCertificate
-            value: my-ingress-certificate
+        values: |
+          host: tekton-dashboard.myexample.dev
+          ingressCertificate: my-ingress-certificate

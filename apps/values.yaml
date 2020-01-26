@@ -11,8 +11,7 @@ global:
     repoURL: https://github.com/ruzickap/argocd-apps
 
     # (optional) If not specified then "HEAD" is used
-    #targetRevision: HEAD
-    targetRevision: dev2
+    targetRevision: HEAD
 
 applications:
   # Application name
@@ -33,18 +32,11 @@ applications:
     server: https://kubernetes.default.svc
 
     # (optional) If not specified then "global" targetRevision is used
-    #targetRevision: HEAD
-    targetRevision: dev2
+    targetRevision: HEAD
 
     # Helm configuration
     application_source_specific_configs:
       helm:
-        # Due to this bug (https://github.com/argoproj/argo-cd/issues/3032) I need to use `parameters` instead of `values: |`
         values: |
           host: tekton-dashboard.myexample.dev
           ingressCertificate: my-ingress-certificate
-        # parameters:
-        #   - name: host
-        #     value: tekton-dashboard.myexample.dev
-        #   - name: ingressCertificate
-        #     value: my-ingress-certificate

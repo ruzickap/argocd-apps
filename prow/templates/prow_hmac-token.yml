@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hmac-token
+  namespace: {{ $.Values.prow_namespace }}
+
+data:
+  hmac: {{ $.Values.prow_hmac_token | b64enc | quote }}

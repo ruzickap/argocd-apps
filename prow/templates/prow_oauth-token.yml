@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: oauth-token
+  namespace: {{ $.Values.prow_namespace }}
+
+data:
+  oauth: {{ $.Values.prow_oauth_token | b64enc | quote }}

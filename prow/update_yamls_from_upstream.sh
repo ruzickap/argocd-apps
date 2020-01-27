@@ -10,4 +10,5 @@ tac templates/starter.yaml-upstream | sed \
   -e 's/: test-pods/: {{ $.Values.prowjob_namespace }}/' \
   -e '/          servicePort: 8888/,/^---$/d;' \
   -e '/  plugins.yaml: ""/,/^---$/d' \
+  -e '/command: \["\/bin\/date"\]/,/^---$/d' \
 | tac > templates/prow.yaml

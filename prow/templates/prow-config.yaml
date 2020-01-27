@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: {{ $.Values.prow_namespace }}
+data:
+  config.yaml: |
+{{ toYaml $.Values.prow_config | indent 4 }}

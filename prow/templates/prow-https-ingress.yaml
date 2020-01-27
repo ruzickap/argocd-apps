@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  namespace: {{ $.Values.prow_namespace }}
   name: prow
+  namespace: {{ $.Values.prow_namespace }}
 spec:
   rules:
     - host: {{ $.Values.prow_host }}
       http:
         paths:
-        - path: /*
+        - path: /
           backend:
             serviceName: deck
             servicePort: 80

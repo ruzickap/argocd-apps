@@ -51,8 +51,20 @@ applications:
           prow_oauth_token: my_super_secret_prow_oauth_token
           prow_host: tekton-dashboard.myexample.dev
           ingressCertificate: my-ingress-certificate
-          prow_plugins:
-            plugins: {}
-              # my-user1/my-git-repo1:
-              #   - size
-              #   - trigger
+          prow_plugins: {}
+            # plugins: {}
+            #   my-user1/my-git-repo1:
+            #     - size
+            #     - trigger
+          prow_config: {}
+            # prow_config:
+            #   prowjob_namespace: prowjob
+            #   pod_namespace: prow
+            #   periodics:
+            #     - interval: 10m
+            #       agent: kubernetes
+            #       name: echo-test
+            #       spec:
+            #         containers:
+            #           - image: alpine
+            #             command: ["/bin/date"]

@@ -7,3 +7,7 @@ prowjob_namespace: prowjob
 prow_oauth_token: my_secret_prow_oauth_token
 
 prow_hmac_token: my_secret_prow_hmac_token
+
+prow_host: prow.myexample.com
+
+ingressCertificate: my_certificate_secret

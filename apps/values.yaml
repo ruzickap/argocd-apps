@@ -38,7 +38,7 @@ applications:
     application_source_specific_configs:
       helm:
         values: |
-          host: tekton-dashboard.myexample.dev
+          tekton_host: tekton-dashboard.myexample.dev
           ingressCertificate: my-ingress-certificate
 
   prow:
@@ -49,3 +49,5 @@ applications:
           prowjob_namespace: prowjob
           prow_hmac_token: my_super_secret_prow_hmac_token
           prow_oauth_token: my_super_secret_prow_oauth_token
+          prow_host: tekton-dashboard.myexample.dev
+          ingressCertificate: my-ingress-certificate

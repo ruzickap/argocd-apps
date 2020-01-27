@@ -51,3 +51,8 @@ applications:
           prow_oauth_token: my_super_secret_prow_oauth_token
           prow_host: tekton-dashboard.myexample.dev
           ingressCertificate: my-ingress-certificate
+          prow_plugins:
+            plugins: {}
+              # my-user1/my-git-repo1:
+              #   - size
+              #   - trigger

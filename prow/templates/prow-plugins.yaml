@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: plugins
+  namespace: {{ $.Values.prow_namespace }}
+
+data:
+  plugins.yaml: |
+{{ toYaml $.Values.prow_plugins | indent 4 }}

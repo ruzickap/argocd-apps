@@ -12,6 +12,8 @@ prow_host: prow.myexample.com
 
 ingressCertificate: my_certificate_secret
 
+container_registry: my_container_registry
+
 prow_plugins:
   plugins:
     my-user1/my-git-repo1:

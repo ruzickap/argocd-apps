@@ -15,6 +15,10 @@ spec:
       - name: pathToContext
         description: The build context used by Kaniko (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
         default: /workspace/workspace
+  outputs:
+    resources:
+      - name: builtImage
+        type: image
   steps:
     - name: build
       image: gcr.io/kaniko-project/executor:v0.16.0
@@ -26,7 +30,7 @@ spec:
       args:
         - --dockerfile=$(inputs.params.pathToDockerFile)
         - --context=$(inputs.params.pathToContext)
-        - --no-push
+        - --destination=$(outputs.resources.builtImage.url)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
@@ -37,6 +41,8 @@ spec:
   resources:
     - name: git-repo
       type: git
+    - name: builtImage
+      type: image
   tasks:
     - name: build-docker-fluentd
       taskRef:
@@ -48,8 +54,21 @@ spec:
           value: /workspace/workspace
       resources:
         inputs:
-        - name: workspace
-          resource: git-repo
+          - name: workspace
+            resource: git-repo
+        outputs:
+          - name: builtImage
+            resource: builtImage
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: container-registry-build
+spec:
+  type: image
+  params:
+    - name: url
+      value: {{ $.Values.container_registry }}/library/test
 
 # Use these resources for testing the pipeline
 # ---

@@ -1,8 +1,8 @@
 # Namespace for prow
-prow_namespace: prow
+prow_namespace: &prow_namespace prow
 
 # Namespace for prow jobs
-prowjob_namespace: prowjob
+prowjob_namespace: &prowjob_namespace prowjob
 
 prow_oauth_token: my_secret_prow_oauth_token
 
@@ -19,8 +19,8 @@ prow_plugins:
       - trigger
 
 prow_config:
-  prowjob_namespace: prowjob
-  pod_namespace: prow
+  prowjob_namespace: *prowjob_namespace
+  pod_namespace: *prow_namespace
   periodics:
     - interval: 10m
       agent: kubernetes

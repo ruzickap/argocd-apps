@@ -40,6 +40,7 @@ applications:
         values: |
           tekton_host: tekton-dashboard.myexample.dev
           ingressCertificate: my-ingress-certificate
+          prowjob_namespace: prowjob
 
   prow:
     application_source_specific_configs:

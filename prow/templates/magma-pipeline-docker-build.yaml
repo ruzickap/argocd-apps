@@ -1,0 +1,80 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: build
+  namespace: {{ $.Values.prow_namespace }}
+spec:
+  inputs:
+    resources:
+      - name: workspace
+        type: git
+    params:
+      - name: pathToDockerFile
+        description: The path to the dockerfile to build
+        default: /workspace/workspace/Dockerfile
+      - name: pathToContext
+        description: The build context used by Kaniko (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
+        default: /workspace/workspace
+  steps:
+    - name: build
+      image: gcr.io/kaniko-project/executor:v0.16.0
+      env:
+        - name: "DOCKER_CONFIG"
+          value: "/tekton/home/.docker/"
+      command:
+        - /kaniko/executor
+      args:
+        - --dockerfile=$(inputs.params.pathToDockerFile)
+        - --context=$(inputs.params.pathToContext)
+        - --no-push
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: magma-pipeline
+  namespace: {{ $.Values.prow_namespace }}
+spec:
+  resources:
+    - name: git-repo
+      type: git
+  tasks:
+    - name: build-docker-fluentd
+      taskRef:
+        name: build
+      params:
+        - name: pathToDockerFile
+          value: /workspace/workspace/lte/gateway/docker/deploy/Dockerfile
+        - name: pathToContext
+          value: /workspace/workspace
+      resources:
+        inputs:
+        - name: workspace
+          resource: git-repo
+
+# Use these resources for testing the pipeline
+# ---
+# apiVersion: tekton.dev/v1alpha1
+# kind: PipelineResource
+# metadata:
+#   name: git-repo
+#   namespace: {{ $.Values.prow_namespace }}
+# spec:
+#   type: git
+#   params:
+#     - name: revision
+#       value: master
+#     - name: url
+#       value: https://github.com/ruzickap/magma.git
+# ---
+# apiVersion: tekton.dev/v1alpha1
+# kind: PipelineRun
+# metadata:
+#   name: test-pipeline
+#   namespace: {{ $.Values.prow_namespace }}
+# spec:
+#   pipelineRef:
+#     name: magma-pipeline
+#   resources:
+#     - name: git-repo
+#       resourceRef:
+#         name: git-repo

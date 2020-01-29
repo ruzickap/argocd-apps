@@ -69,4 +69,4 @@ spec:
   type: image
   params:
     - name: url
-      value: {{ $.Values.container_registry }}/library/test
+      value: {{ $.Values.acr_login_server }}/library/test

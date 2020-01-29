@@ -12,7 +12,11 @@ prow_host: prow.myexample.com
 
 ingressCertificate: my_certificate_secret
 
-container_registry: my_container_registry
+acr_login_server: my_container_registry
+
+acr_admin_username: username
+
+acr_admin_password: password
 
 prow_plugins:
   plugins:

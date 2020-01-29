@@ -1,0 +1,30 @@
+# Use these resources for testing the pipeline
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: git-repo
+  namespace: prowjob
+spec:
+  type: git
+  params:
+    - name: revision
+      value: master
+    - name: url
+      value: https://github.com/ruzickap/magma.git
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: test-pipeline
+  namespace: prowjob
+spec:
+  pipelineRef:
+    name: magma-pipeline
+  resources:
+    - name: git-repo
+      resourceRef:
+        name: git-repo
+    - name: builtImage
+      resourceRef:
+        name: container-registry-build

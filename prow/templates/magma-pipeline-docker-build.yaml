@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: build
-  namespace: {{ $.Values.prow_namespace }}
+  namespace: {{ $.Values.prowjob_namespace }}
 spec:
   inputs:
     resources:
@@ -36,7 +36,7 @@ apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
 metadata:
   name: magma-pipeline
-  namespace: {{ $.Values.prow_namespace }}
+  namespace: {{ $.Values.prowjob_namespace }}
 spec:
   resources:
     - name: git-repo
@@ -64,36 +64,9 @@ apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: container-registry-build
+  namespace: {{ $.Values.prowjob_namespace }}
 spec:
   type: image
   params:
     - name: url
       value: {{ $.Values.container_registry }}/library/test
-
-# Use these resources for testing the pipeline
-# ---
-# apiVersion: tekton.dev/v1alpha1
-# kind: PipelineResource
-# metadata:
-#   name: git-repo
-#   namespace: {{ $.Values.prow_namespace }}
-# spec:
-#   type: git
-#   params:
-#     - name: revision
-#       value: master
-#     - name: url
-#       value: https://github.com/ruzickap/magma.git
-# ---
-# apiVersion: tekton.dev/v1alpha1
-# kind: PipelineRun
-# metadata:
-#   name: test-pipeline
-#   namespace: {{ $.Values.prow_namespace }}
-# spec:
-#   pipelineRef:
-#     name: magma-pipeline
-#   resources:
-#     - name: git-repo
-#       resourceRef:
-#         name: git-repo

@@ -1,16 +1,16 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: build
+  name: build-container-image-from-git-source
   namespace: {{ $.Values.prowjob_namespace }}
 spec:
   inputs:
     resources:
-      - name: workspace
+      - name: container-source
         type: git
     params:
       - name: pathToDockerFile
-        description: The path to the dockerfile to build
+        description: The path to the Dockerfile to build
         default: /workspace/workspace/Dockerfile
       - name: pathToContext
         description: The build context used by Kaniko (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
@@ -27,7 +27,7 @@ spec:
           - key: .dockerconfigjson
             path: config.json
   steps:
-    - name: build
+    - name: build-container
       image: gcr.io/kaniko-project/executor:v0.16.0
       env:
         - name: "DOCKER_CONFIG"
@@ -51,12 +51,12 @@ spec:
   resources:
     - name: git-repo
       type: git
-    - name: builtImage
+    - name: container-registry
       type: image
   tasks:
-    - name: build-docker-fluentd
+    - name: build-container-image-gateway
       taskRef:
-        name: build
+        name: build-container-image-from-git-source
       params:
         - name: pathToDockerFile
           value: /workspace/workspace/lte/gateway/docker/deploy/Dockerfile
@@ -64,16 +64,16 @@ spec:
           value: /workspace/workspace
       resources:
         inputs:
-          - name: workspace
+          - name: container-source
             resource: git-repo
         outputs:
           - name: builtImage
-            resource: builtImage
+            resource: container-registry
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: container-registry-build
+  name: container-registry
   namespace: {{ $.Values.prowjob_namespace }}
 spec:
   type: image

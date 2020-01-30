@@ -25,6 +25,6 @@ spec:
     - name: git-repo
       resourceRef:
         name: git-repo
-    - name: builtImage
+    - name: container-registry
       resourceRef:
-        name: container-registry-build
+        name: container-registry

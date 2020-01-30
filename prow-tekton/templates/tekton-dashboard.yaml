@@ -185,7 +185,7 @@ spec:
       type: string
   steps:
   - name: kubectl-apply
-    image: lachlanevenson/k8s-kubectl:latest
+    image: lachlanevenson/k8s-kubectl@sha256:6944392a5ab6f762addbe3b3d8fcca7f47abdc44ff6076a6d18dc08510597e30
     command:
     - kubectl
     args:

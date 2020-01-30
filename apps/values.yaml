@@ -15,12 +15,12 @@ global:
 
 applications:
   # Application name
-  tekton:
+  prow-tekton:
     # (optional) If not specified then "name" is used
-    namespace: tekton-pipelines
+    namespace: argocd
 
     # (optional) If not specified then "name" is used
-    path: tekton
+    path: prow-tekton
 
     # (optional) If not specified then "global" project is used
     project: default
@@ -40,18 +40,11 @@ applications:
         values: |
           tekton_host: tekton-dashboard.myexample.dev
           ingressCertificate: my-ingress-certificate
-          prowjob_namespace: prowjob
-
-  prow:
-    application_source_specific_configs:
-      helm:
-        values: |
           prow_namespace: prow
           prowjob_namespace: prowjob
           prow_hmac_token: my_super_secret_prow_hmac_token
           prow_oauth_token: my_super_secret_prow_oauth_token
           prow_host: tekton-dashboard.myexample.dev
-          ingressCertificate: my-ingress-certificate
           acr_login_server: my_container_registry
           acr_admin_username: username
           acr_admin_password: password

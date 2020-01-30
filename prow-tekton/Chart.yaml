@@ -1,17 +1,20 @@
 apiVersion: v1
-name: applications-prow
+name: applications-prow-tekton
 version: v0.1.0
 appVersion: v0.1.0
-description: Applications - prow
-home: https://github.com/ruzickap/argocd-apps/prow
+description: Applications - prow-tekton
+home: https://github.com/ruzickap/argocd-apps/prow-tekton
 icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
 keywords:
   - argocd
   - apps
   - applications
   - prow
+  - tekton
+  - tekton-pipelines
+  - tekton-dashboard
 sources:
-  - https://github.com/ruzickap/argocd-apps/prow
+  - https://github.com/ruzickap/argocd-apps/prow-tekton
 maintainers:
   - name: ruzickap
     email: petr.ruzicka@gmail.com

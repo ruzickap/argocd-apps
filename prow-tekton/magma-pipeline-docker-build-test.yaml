@@ -3,8 +3,11 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: git-repo
+  name: git-repository
   namespace: prowjob
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   type: git
   params:
@@ -18,13 +21,16 @@ kind: PipelineRun
 metadata:
   name: test-pipeline
   namespace: prowjob
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   pipelineRef:
     name: magma-pipeline
   resources:
-    - name: git-repo
+    - name: git-repository
       resourceRef:
-        name: git-repo
+        name: git-repository
     - name: container-registry
       resourceRef:
         name: container-registry

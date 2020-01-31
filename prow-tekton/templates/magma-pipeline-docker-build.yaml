@@ -6,15 +6,17 @@ metadata:
 spec:
   inputs:
     resources:
-      - name: container-source
+      - name: git-repository
         type: git
     params:
       - name: pathToDockerFile
         description: The path to the Dockerfile to build
-        default: /workspace/workspace/Dockerfile
+        default: Dockerfile
+        type: string
       - name: pathToContext
         description: The build context used by Kaniko (https://github.com/GoogleContainerTools/kaniko#kaniko-build-contexts)
-        default: /workspace/workspace
+        default: /workspace/git-repository/
+        type: string
   outputs:
     resources:
       - name: builtImage
@@ -49,7 +51,7 @@ metadata:
   namespace: {{ $.Values.prowjob_namespace }}
 spec:
   resources:
-    - name: git-repo
+    - name: git-repository
       type: git
     - name: container-registry
       type: image
@@ -59,13 +61,13 @@ spec:
         name: build-container-image-from-git-source
       params:
         - name: pathToDockerFile
-          value: /workspace/workspace/lte/gateway/docker/deploy/Dockerfile
+          value: /workspace/git-repository/lte/gateway/docker/deploy/Dockerfile
         - name: pathToContext
-          value: /workspace/workspace
+          value: /workspace/git-repository/
       resources:
         inputs:
-          - name: container-source
-            resource: git-repo
+          - name: git-repository
+            resource: git-repository
         outputs:
           - name: builtImage
             resource: container-registry

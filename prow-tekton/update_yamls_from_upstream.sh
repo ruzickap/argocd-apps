@@ -26,3 +26,5 @@ tac templates/starter.yaml-upstream | sed \
   -e '/  plugins.yaml: ""/,/^---$/d' \
   -e '/command: \["\/bin\/date"\]/,/^---$/d' \
 | tac > templates/prow.yaml
+
+rm templates/starter.yaml-upstream

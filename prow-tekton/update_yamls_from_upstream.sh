@@ -16,6 +16,8 @@ curl -sL https://github.com/tektoncd/pipeline/releases/download/${TEKTON_PIPELIN
 
 # Script to update prow yaml files form upstream
 
+#curl -s https://raw.githubusercontent.com/kubernetes/test-infra/master/prow/cmd/pipeline/dev.yaml > templates/prow_dev.yaml
+
 curl -s https://raw.githubusercontent.com/kubernetes/test-infra/master/prow/cluster/starter.yaml > templates/starter.yaml-upstream
 
 tac templates/starter.yaml-upstream | sed \

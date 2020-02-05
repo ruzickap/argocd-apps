@@ -45,6 +45,7 @@ applications:
           prow_hmac_token: my_super_secret_prow_hmac_token
           prow_oauth_token: my_super_secret_prow_oauth_token
           prow_host: tekton-dashboard.myexample.dev
+          prow_slack_access_token: my_prow_slack_access_token
           acr_login_server: my_container_registry
           acr_admin_username: username
           acr_admin_password: password

@@ -1,0 +1,40 @@
+# https://github.com/kubernetes/test-infra/tree/master/prow/cmd/crier
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crier
+  namespace: {{ $.Values.prow_namespace }}
+  labels:
+    app: crier
+spec:
+  selector:
+    matchLabels:
+      app: crier
+  template:
+    metadata:
+      labels:
+        app: crier
+    spec:
+      containers:
+        - name: crier
+          image: gcr.io/k8s-prow/crier:v20200205-656133e91
+          args:
+            - --slack-workers=1
+            - --config-path=/etc/config/config.yaml
+            - --slack-token-file=/etc/slack/token
+            - --dry-run=false
+          volumeMounts:
+            - mountPath: /etc/config
+              name: config
+              readOnly: true
+            - name: slack
+              mountPath: /etc/slack
+              readOnly: true
+      volumes:
+        - name: slack
+          secret:
+            secretName: slack-token
+        - name: config
+          configMap:
+            name: config

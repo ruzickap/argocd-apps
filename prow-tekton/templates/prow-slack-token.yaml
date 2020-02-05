@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: slack-token
+  namespace: {{ $.Values.prow_namespace }}
+
+data:
+  token: {{ $.Values.prow_slack_access_token | b64enc | quote }}

@@ -14,6 +14,8 @@ prow_oauth_token: my_secret_prow_oauth_token
 
 prow_hmac_token: my_secret_prow_hmac_token
 
+prow_slack_access_token: prow_slack_access_token
+
 prow_host: prow.myexample.com
 
 acr_login_server: my_container_registry
